@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (firestarter pytest evil-surround evil-numbers flycheck-puppet puppet-mode poly-markdown rjsx-mode exec-path-from-shell flycheck-rust rust-mode rust direnv polymode nix-buffer web-mode yaml-mode js-doc company nix-mode ledger-mode powerline magit focus-autosave-mode dtrt-indent dockerfile-mode flycheck-flow flycheck helm-ag helm-projectile projectile atom-dark-theme evil-org evil helm use-package)))
+    (counsel firestarter pytest evil-surround evil-numbers flycheck-puppet puppet-mode poly-markdown rjsx-mode exec-path-from-shell flycheck-rust rust-mode rust direnv polymode nix-buffer web-mode yaml-mode js-doc company nix-mode ledger-mode powerline magit focus-autosave-mode dtrt-indent dockerfile-mode flycheck-flow flycheck helm-ag helm-projectile projectile atom-dark-theme evil-org evil helm use-package)))
  '(safe-local-variable-values
    (quote
     ((firestarter-type . "failure")

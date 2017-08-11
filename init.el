@@ -1,5 +1,43 @@
 (package-initialize)
 
+(setq-default inhibit-splash-screen t
+              inhibit-startup-message t
+              inhibit-startup-echo-area-message t
+              visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
+              left-fringe-width nil
+              indicate-empty-lines t
+              indent-tabs-mode nil
+              mouse-yank-at-point t
+              show-trailing-whitespace t
+              python-fill-docstring-style "symmetric"
+              org-todo-keywords '((sequence "TODO" "DONE" "WAIT"))
+              ispell-program-name "aspell")
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(when (boundp 'scroll-bar-mode)
+  (scroll-bar-mode nil))
+
+(global-hl-line-mode t)
+(global-linum-mode t)
+
+;; Disable backup and auto saving to #files#. That's what version control is for
+(setq auto-save-default nil)
+(setq make-backup-files nil)
+
+(global-auto-revert-mode t) ; Auto-revert file to disk version when files change externally
+(setq require-final-newline t) ; Always add new line to the end of a file
+(add-hook 'before-save-hook    ; Delete trailing swhitespace on save
+          'delete-trailing-whitespace)
+
+(global-set-key (kbd "C-/") 'comment-region)
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'noerror)
+
+;; C-x c is bound to kill-emacs. I don't need a hotkey for that.
+(global-unset-key (kbd "C-x c"))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 
@@ -14,7 +52,9 @@
 (eval-when-compile
   (require 'use-package))
 
-(load-file (expand-file-name "helm.el" user-emacs-directory))
+;;(load-file (expand-file-name "helm.el" user-emacs-directory))
+(load-file (expand-file-name "fira.el" user-emacs-directory))
+(load-file (expand-file-name "ivy.el" user-emacs-directory))
 
 (use-package evil
   :ensure t
@@ -52,15 +92,7 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-mode)
-
-  (use-package helm-projectile
-    :ensure t
-    :config
-    (helm-projectile-on))
-
-  (use-package helm-ag
-    :ensure t))
+  (projectile-mode))
 
 (use-package flycheck
   :ensure t
@@ -180,43 +212,10 @@
          ("\\.markdown\\'" . poly-markdown-mode))
   :config (add-hook 'poly-markdown-mode (lambda () flyspell-mode)))
 
-(setq-default inhibit-splash-screen t
-              inhibit-startup-message t
-              inhibit-startup-echo-area-message t
-              visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)
-              left-fringe-width nil
-              indicate-empty-lines t
-              indent-tabs-mode nil
-              mouse-yank-at-point t
-              show-trailing-whitespace t
-              python-fill-docstring-style "symmetric"
-              org-todo-keywords '((sequence "TODO" "DONE" "WAIT"))
-              ispell-program-name "aspell")
-
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(when (boundp 'scroll-bar-mode)
-  (scroll-bar-mode nil))
-
-(global-hl-line-mode t)
-(global-linum-mode t)
-
-;; Disable backup and auto saving to #files#. That's what version control is for
-(setq auto-save-default nil)
-(setq make-backup-files nil)
-
-;; Don't use fancy zsh-isms in emacs
-(setq explicit-shell-file-name "/run/current-system/sw/bin/bash")
-
-(global-auto-revert-mode t) ; Auto-revert file to disk version when files change externally
-(setq require-final-newline t) ; Always add new line to the end of a file
-(add-hook 'before-save-hook    ; Delete trailing swhitespace on save
-          'delete-trailing-whitespace)
-
-(global-set-key (kbd "C-/") 'comment-region)
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file 'noerror)
+(use-package firestarter
+  :ensure t
+  :config
+  (firestarter-mode))
 
 (provide 'init)
 ;;; init.el ends here
