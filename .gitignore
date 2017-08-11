@@ -1,0 +1,5 @@
+elpa/
+auto-save-list/
+nix-buffer/
+projectile-bookmarks.eld
+session.*
