@@ -92,7 +92,15 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-mode))
+  (projectile-mode)
+
+  (use-package ag
+    :ensure t)
+
+  (use-package projectile-ripgrep
+    :ensure t
+    :config
+    (global-set-key (kbd "C-c p s r") 'projectile-ripgrep)))
 
 (use-package flycheck
   :ensure t
@@ -216,6 +224,19 @@
   :ensure t
   :config
   (firestarter-mode))
+
+(use-package elm-mode
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-elm))
+
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode))
+
+(use-package dizzee
+  :ensure t)
 
 (provide 'init)
 ;;; init.el ends here
