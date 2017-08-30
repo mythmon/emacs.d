@@ -235,8 +235,5 @@
   :config
   (direnv-mode))
 
-(use-package dizzee
-  :ensure t)
-
 (provide 'init)
 ;;; init.el ends here
