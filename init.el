@@ -133,15 +133,7 @@
       (when (and flake8 (file-executable-p flake8))
         (setq-local flycheck-python-flake8-executable flake8))))
 
-  (add-hook 'flycheck-mode-hook #'my/use-project-lint-executables)
-
-  (defun eslint-fix-file ()
-    (shell-command (concat flycheck-javascript-eslint-executable " --fix " (buffer-file-name))))
-
-  (add-hook 'js-mode-hook
-            (lambda ()
-              ; the fth
-              (add-hook 'after-save-hook #'eslint-fix-file nil t))))
+  (add-hook 'flycheck-mode-hook #'my/use-project-lint-executables))
 
 (use-package dockerfile-mode
   :ensure t)
@@ -216,8 +208,8 @@
   :ensure polymode
   :defer t
   :mode (("\\.md" . poly-markdown-mode)
-         ("\\.mkd\\'" . poly-markdown-mode)
-         ("\\.markdown\\'" . poly-markdown-mode))
+         ("\\.mkd" . poly-markdown-mode)
+         ("\\.markdown" . poly-markdown-mode))
   :config (add-hook 'poly-markdown-mode (lambda () flyspell-mode)))
 
 (use-package firestarter
