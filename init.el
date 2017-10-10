@@ -229,6 +229,12 @@
   :config
   (direnv-mode))
 
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 1)  ;; 1 day
+   (auto-package-update-maybe))
 
 (use-package rjsx-mode
   :ensure t
