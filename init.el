@@ -13,6 +13,8 @@
               org-todo-keywords '((sequence "TODO" "DONE" "WAIT"))
               ispell-program-name "aspell")
 
+(setq-default js-switch-indent-offset 2)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (when (boundp 'scroll-bar-mode)
@@ -226,6 +228,13 @@
   :ensure t
   :config
   (direnv-mode))
+
+
+(use-package rjsx-mode
+  :ensure t
+  :config
+  ;; Use rjsx mode for all js files, not only JSX files
+  (add-to-list 'auto-mode-alist '(".*\\.js\\'" . rjsx-mode)))
 
 (provide 'init)
 ;;; init.el ends here
